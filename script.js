@@ -14,9 +14,11 @@ if(window.innerWidth > 768) {
     links.forEach(link => {
         link.addEventListener('mouseenter', () => {
             cursor.classList.add('active');
+            follower.style.opacity = '0'; // ලින්ක් එකක් උඩදී වටේ රවුම හංගනවා
         });
         link.addEventListener('mouseleave', () => {
             cursor.classList.remove('active');
+            follower.style.opacity = '0.5'; // ඉවත් වූ විට නැවත පෙන්වනවා
         });
     });
 }

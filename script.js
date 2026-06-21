@@ -13,7 +13,7 @@ if(window.innerWidth > 768) {
     document.addEventListener('mousemove', (e) => {
         gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
         gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.3 });
-        // ෆොටෝ එක Cursor එක පිටිපස්සෙන් එන්න සැලැස්වීම
+        // ფොტო එක Cursor එක පිටიპස්სෙන් එන්න සැලැස්වීම
         gsap.to(hoverImage, { x: e.clientX, y: e.clientY, duration: 0.4 });
     });
 

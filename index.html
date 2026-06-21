@@ -11,6 +11,15 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
+    <!-- Cursor එක නම උඩට යද්දි පේන පොඩි ෆොටෝ එක -->
+    <div class="cursor-image" id="hover-image" style="background-image: url('my-photo.jpg')"></div>
+
+    <!-- Double Click කරාම පේන Full Image Overlay එක -->
+    <div class="fullscreen-overlay" id="image-overlay">
+        <div class="overlay-bg" style="background-image: url('my-photo.jpg')"></div>
+        <span class="close-txt">Click anywhere to close</span>
+    </div>
+
     <nav>
         <div class="logo">DASITH.</div>
         <button id="theme-toggle" class="theme-btn">Dark Mode</button>
@@ -19,8 +28,11 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1 class="reveal-text">Dasith</h1>
-                <h1 class="reveal-text italic">Damsara.</h1>
+                <!-- මෙන්න මේ නම උඩට යද්දි තමයි photo එක පේන්නේ -->
+                <span class="name-hover-target">
+                    <h1 class="reveal-text">Dasith</h1>
+                    <h1 class="reveal-text italic">Damsara.</h1>
+                </span>
                 <p class="fade-in">Graphic Designer & Illustrator based in Sri Lanka.</p>
             </div>
             <div class="scroll-indicator fade-in">Scroll Down</div>
@@ -34,7 +46,6 @@
                         <p>I am a passionate Graphic Designer qualified with NVQ Level 4 from VTA Gampola. I specialize in turning complex ideas into minimalist, intuitive, and timeless visual experiences.</p>
                         <a href="#projects" class="link-btn">View My Skills</a>
                     </div>
-                    <!-- මෙතනට ඔයාගේ photo එකක් දාන්න පුළුවන් (img folder එකක් ඇතුළට දාලා) -->
                     <div class="about-image parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
                 </div>
             </div>

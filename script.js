@@ -4,7 +4,9 @@ gsap.registerPlugin(ScrollTrigger);
 if(window.innerWidth > 768) {
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
-    const links = document.querySelectorAll('a, .theme-btn');
+    
+    // මෙතනට .social-card එකත් ඇතුලත් කර ඇත
+    const links = document.querySelectorAll('a, .theme-btn, .social-card');
 
     document.addEventListener('mousemove', (e) => {
         gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });

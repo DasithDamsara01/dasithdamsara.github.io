@@ -43,7 +43,34 @@ a { color: var(--text-main); text-decoration: none; cursor: none; }
   border-radius: 20px;
   transition: 0.3s;
 }
+.scroll-container {
+  text-align: center;
+  font-family: sans-serif;
+}
 
+.scroll-text {
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.arrows {
+  font-size: 24px;
+  color: #555; /* ඔබට කැමති පාටක් දෙන්න */
+  animation: bounce 2s infinite;
+}
+
+/* පහළට bounce වන ඇනිමේෂන් එක */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
 /* Custom Cursor Fix */
 .cursor { 
   width: 8px; 

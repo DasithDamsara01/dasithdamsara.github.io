@@ -1,89 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dasith Damsara | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+:root {
+  --bg-color: #fafafa;
+  --text-main: #111111;
+  --text-muted: #666666;
+  --accent: #d4cfc9;
+  --card-bg: #eeeeee;
+}
 
-    <!-- Cursor එක නම උඩට යද්දි පේන පොඩි ෆොටෝ එක -->
-    <div class="cursor-image" id="hover-image" style="background-image: url('Photo.png')"></div>
+[data-theme="dark"] {
+  --bg-color: #111111;
+  --text-main: #fafafa;
+  --text-muted: #aaaaaa;
+  --accent: #333333;
+  --card-bg: #222222;
+}
 
-    <!-- Double Click කරාම පේන Full Image Overlay එක -->
-    <div class="fullscreen-overlay" id="image-overlay">
-        <div class="overlay-bg" style="background-image: url('Photo.png')"></div>
-        <span class="close-txt">Click anywhere to close</span>
-    </div>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; cursor: none; transition: background 0.3s, color 0.3s; }
+h1, h2, h3, .italic { font-family: 'Playfair Display', serif; font-weight: 400; }
+a { color: var(--text-main); text-decoration: none; cursor: none; }
 
-    <nav>
-        <div class="logo">DASITH.</div>
-        <button id="theme-toggle" class="theme-btn">Dark Mode</button>
-    </nav>
+/* Theme Button */
+.theme-btn {
+  background: var(--text-main);
+  color: var(--bg-color);
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: 0.3s;
+}
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <!-- මෙන්න මේ නම උඩට යද්දි තමයි photo එක පේන්නේ -->
-                <span class="name-hover-target">
-                    <h1 class="reveal-text">Dasith</h1>
-                    <h1 class="reveal-text italic">Damsara.</h1>
-                </span>
-                <p class="fade-in">Graphic Designer & Illustrator based in Sri Lanka.</p>
-            </div>
-            <div class="scroll-indicator fade-in">Scroll Down</div>
-        </section>
+/* Custom Cursor (Auto Contrast) */
+.cursor { width: 8px; height: 8px; background: var(--text-main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
+.cursor-follower { width: 40px; height: 40px; border: 1px solid var(--text-main); opacity: 0.5; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: 0.1s; mix-blend-mode: difference; }
+.cursor.active { width: 60px; height: 60px; }
 
-        <section class="about" id="about">
-            <div class="container">
-                <div class="about-flex">
-                    <div class="about-text">
-                        <h2 class="reveal-title">Bringing creative visions to life through design.</h2>
-                        <p>I am a passionate Graphic Designer qualified with NVQ Level 4 from VTA Gampola. I specialize in turning complex ideas into minimalist, intuitive, and timeless visual experiences.</p>
-                        <a href="#projects" class="link-btn">View My Skills</a>
-                    </div>
-                    <div class="about-image parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                </div>
-            </div>
-        </section>
+/* Hover Image (Cursor Follower) */
+.cursor-image {
+  width: 150px;
+  height: 200px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translate(20px, 20px) scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.cursor-image.visible {
+  opacity: 1;
+  transform: translate(20px, 20px) scale(1);
+}
 
-        <section class="projects" id="projects">
-            <div class="container">
-                <h2 class="section-title reveal-title">My Skills & Expertise</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">Illustration</div>
-                    <div class="skill-card">Layout Design</div>
-                    <div class="skill-card">Color Theory</div>
-                    <div class="skill-card">Photography</div>
-                    <div class="skill-card">Vector Graphics</div>
-                    <div class="skill-card">Print Design</div>
-                </div>
-            </div>
-        </section>
+/* Fullscreen Overlay for Double Click */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10005;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.fullscreen-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.overlay-bg {
+  width: auto;
+  height: 80vh;
+  aspect-ratio: 3/4;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: scale(0.9);
+  transition: transform 0.5s ease;
+}
+.fullscreen-overlay.open .overlay-bg {
+  transform: scale(1);
+}
+.close-txt {
+  position: absolute;
+  bottom: 30px;
+  color: #888;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
-        <footer class="contact">
-            <div class="container">
-                <h2 class="reveal-title">Let's build something beautiful together.</h2>
-                <a href="mailto:dasithdamsara01.gmail.com" class="email-link">dasithdamsara01@gmail.com</a>
-                <p style="margin-top: 20px; color: var(--text-muted);">Phone: 074 269 4722 / 074 237 1117</p>
-                <div class="footer-bottom">
-                    <p>&copy; 2026 Dasith Damsara. All rights reserved.</p>
-                    <div class="socials">
-                        <a href="#">LinkedIn</a>
-                        <a href="#">Instagram</a>
-                        <a href="#">Behance</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </main>
+nav { display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; position: fixed; width: 100%; z-index: 100; mix-blend-mode: difference; }
+.logo { font-size: 1.2rem; font-weight: 600; font-family: 'Inter', sans-serif; letter-spacing: -0.5px; color: white; }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+.container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+
+/* Hero */
+.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
+.hero-content { text-align: center; }
+.name-hover-target { display: inline-block; cursor: none; }
+.hero h1 { font-size: 8rem; line-height: 1.1; overflow: hidden; }
+.hero h1.italic { font-style: italic; color: var(--text-muted); }
+.hero p { margin-top: 30px; font-size: 1.2rem; color: var(--text-muted); font-family: 'Inter', sans-serif; font-weight: 400; }
+.scroll-indicator { position: absolute; bottom: 50px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+
+/* About */
+.about { padding: 150px 0; }
+.about-flex { display: flex; justify-content: space-between; align-items: center; gap: 80px; }
+.about-text { flex: 1; }
+.about-text h2 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 40px; }
+.about-text p { font-size: 1.2rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 40px; max-width: 500px; }
+.link-btn { display: inline-block; padding-bottom: 5px; border-bottom: 1px solid var(--text-main); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; transition: 0.3s; }
+.link-btn:hover { color: var(--text-muted); border-color: var(--text-muted); }
+.about-image { flex: 1; height: 500px; width: 100%; background-size: cover; background-position: center; border-radius: 4px; overflow: hidden; }
+
+/* Skills Grid */
+.projects { padding: 100px 0 200px; }
+.section-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; font-family: 'Inter', sans-serif; margin-bottom: 80px; border-bottom: 1px solid var(--text-muted); padding-bottom: 20px; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+.skill-card { background: var(--card-bg); padding: 40px; border-radius: 8px; font-size: 1.5rem; font-family: 'Playfair Display', serif; text-align: center; transition: 0.3s; }
+.skill-card:hover { transform: translateY(-10px); background: var(--text-main); color: var(--bg-color); }
+
+/* Footer */
+footer { padding: 150px 0 50px; border-top: 1px solid var(--accent); }
+footer h2 { font-size: 5.5rem; max-width: 900px; line-height: 1.1; }
+.email-link { font-size: 2.5rem; color: var(--text-main); border-bottom: 1px solid var(--text-main); padding-bottom: 10px; width: fit-content; transition: 0.3s; display: block; margin-top: 30px; }
+.email-link:hover { opacity: 0.7; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 80px; border-top: 1px solid var(--accent); margin-top: 50px; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;}
+.socials { display: flex; gap: 40px; }
+.socials a { color: var(--text-muted); transition: 0.3s; }
+.socials a:hover { color: var(--text-main); }
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 4rem; }
+  .about-flex { flex-direction: column; }
+  .about-image { height: 300px; }
+  footer h2 { font-size: 3rem; }
+  .email-link { font-size: 1.5rem; }
+  .cursor, .cursor-follower, .cursor-image { display: none !important; }
+  body { cursor: auto; }
+  a, .theme-btn { cursor: pointer; }
+  .container { padding: 0 20px; }
+  nav { padding: 20px; }
+}

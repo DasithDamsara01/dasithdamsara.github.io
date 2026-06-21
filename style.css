@@ -274,16 +274,31 @@ footer h2 {
   text-transform: uppercase; 
   letter-spacing: 1px;
 }
-.socials { 
-  display: flex; 
-  gap: 40px; 
+/* Socials Grid & Cards Styles */
+.socials-grid {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
-.socials a { 
-  color: var(--text-muted); 
-  transition: 0.3s; 
+
+.social-card {
+  background: var(--card-bg);
+  color: var(--text-main);
+  padding: 15px 30px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  transition: 0.3s ease;
+  display: inline-block;
 }
-.socials a:hover { 
-  color: var(--text-main); 
+
+/* Cursor එක කොටුව උඩට ගියාම ලස්සනට වෙනස් වෙන්න */
+.social-card:hover {
+  transform: translateY(-5px);
+  background: var(--text-main);
+  color: var(--bg-color);
 }
 
 /* Responsive Media Query */

@@ -34,34 +34,40 @@ a { color: var(--text-main); text-decoration: none; cursor: none; }
   transition: 0.3s;
 }
 
-/* Custom Cursor */
-/* Custom Cursor */
+/* Custom Cursor Fixed */
 .cursor { 
   width: 8px; 
   height: 8px; 
-  background: var(--text-main); 
+  background: #ffffff; /* හැමවිටම සුදු විය යුතුය */
   border-radius: 50%; 
   position: fixed; 
   pointer-events: none; 
   z-index: 10000; 
   transform: translate(-50%, -50%); 
   transition: width 0.3s, height 0.3s, background 0.3s; 
-  mix-blend-mode: difference; /* මේකෙන් කළු පසුබිමකදී auto සුදු වෙනවා */
+  mix-blend-mode: difference; /* කළු පසුබිමකදී සුදු, සුදු පසුබිමකදී කළු වේ */
 }
 
 .cursor-follower { 
   width: 40px; 
   height: 40px; 
-  border: 1px solid var(--text-main); 
+  border: 1px solid #ffffff; /* හැමවිටම සුදු විය යුතුය */
   opacity: 0.5; 
   border-radius: 50%; 
   position: fixed; 
   pointer-events: none; 
   z-index: 9999; 
   transform: translate(-50%, -50%); 
-  transition: 0.1s, border-color 0.3s; 
-  mix-blend-mode: difference; /* මේකෙන් රවුමත් auto සුදු වෙනවා */
-}.cursor.active { width: 60px; height: 60px; mix-blend-mode: difference; background: white; }
+  transition: 0.1s, border-color 0.3s, opacity 0.3s; 
+  mix-blend-mode: difference; 
+}
+
+.cursor.active { 
+  width: 50px; 
+  height: 50px; 
+  background: #ffffff; 
+  mix-blend-mode: difference; 
+}
 
 nav { display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; position: fixed; width: 100%; z-index: 100; mix-blend-mode: difference; }
 .logo { font-size: 1.2rem; font-weight: 600; font-family: 'Inter', sans-serif; letter-spacing: -0.5px; color: white; }

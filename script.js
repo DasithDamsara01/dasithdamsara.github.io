@@ -4,7 +4,7 @@ gsap.registerPlugin(ScrollTrigger);
 if(window.innerWidth > 768) {
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
-    const links = document.querySelectorAll('a, .menu-btn');
+    const links = document.querySelectorAll('a, .theme-btn');
 
     document.addEventListener('mousemove', (e) => {
         gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
@@ -39,21 +39,6 @@ gsap.from('.fade-in', {
     stagger: 0.2
 });
 
-// Parallax Effects for Images
-const parallaxBackgrounds = document.querySelectorAll('.parallax-bg');
-parallaxBackgrounds.forEach(bg => {
-    gsap.to(bg, {
-        backgroundPosition: `50% 100%`,
-        ease: "none",
-        scrollTrigger: {
-            trigger: bg,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-        }
-    });
-});
-
 // Reveal Titles on Scroll
 const revealTitles = document.querySelectorAll('.reveal-title');
 revealTitles.forEach(title => {
@@ -68,4 +53,17 @@ revealTitles.forEach(title => {
         duration: 1,
         ease: "power3.out"
     });
+});
+
+// Light / Dark Mode Toggle Functionality
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = 'Dark Mode';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = 'Light Mode';
+    }
 });

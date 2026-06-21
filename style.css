@@ -35,9 +35,33 @@ a { color: var(--text-main); text-decoration: none; cursor: none; }
 }
 
 /* Custom Cursor (Auto Contrast) */
-.cursor { width: 8px; height: 8px; background: var(--text-main); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; mix-blend-mode: difference; }
-.cursor-follower { width: 40px; height: 40px; border: 1px solid var(--text-main); opacity: 0.5; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: 0.1s; mix-blend-mode: difference; }
-.cursor.active { width: 60px; height: 60px; }
+/* Custom Cursor */
+.cursor { 
+  width: 8px; 
+  height: 8px; 
+  background: var(--text-main); 
+  border-radius: 50%; 
+  position: fixed; 
+  pointer-events: none; 
+  z-index: 10000; 
+  transform: translate(-50%, -50%); 
+  transition: width 0.3s, height 0.3s, background 0.3s; 
+  mix-blend-mode: difference; 
+}
+
+.cursor-follower { 
+  width: 40px; 
+  height: 40px; 
+  border: 1px solid var(--text-main); 
+  opacity: 0.5; 
+  border-radius: 50%; 
+  position: fixed; 
+  pointer-events: none; 
+  z-index: 9999; 
+  transform: translate(-50%, -50%); 
+  transition: 0.1s, border-color 0.3s; 
+  mix-blend-mode: difference;
+}.cursor.active { width: 60px; height: 60px; }
 
 /* Hover Image (Cursor Follower) */
 .cursor-image {

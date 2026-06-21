@@ -1,3 +1,4 @@
+/* CSS Variables */
 :root {
   --bg-color: #fafafa;
   --text-main: #111111;
@@ -6,7 +7,8 @@
   --card-bg: #eeeeee;
 }
 
-[data-theme="dark"] {
+/* Dark Mode සක්‍රීය වන විට */
+html[data-theme="dark"] {
   --bg-color: #111111;
   --text-main: #fafafa;
   --text-muted: #aaaaaa;
@@ -14,10 +16,34 @@
   --card-bg: #222222;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; cursor: none; transition: background 0.3s, color 0.3s; }
-h1, h2, h3, .italic { font-family: 'Playfair Display', serif; font-weight: 400; }
-a { color: var(--text-main); text-decoration: none; cursor: none; }
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+/* CRITICAL FIX: HTML සහ BODY දෙකටම background එක ලබා දීමෙන් 
+   mix-blend-mode එක light background එකේදීත් නිවැරදිව වැඩ කරයි.
+*/
+html, body {
+  background: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2, h3, .italic { 
+  font-family: 'Playfair Display', serif; 
+  font-weight: 400; 
+}
+
+a { 
+  color: var(--text-main); 
+  text-decoration: none; 
+  cursor: none; 
+}
 
 /* Theme Button */
 .theme-btn {
@@ -34,7 +60,7 @@ a { color: var(--text-main); text-decoration: none; cursor: none; }
   transition: 0.3s;
 }
 
-/* Custom Cursor Fixed */
+/* Custom Cursor - PERFECTED */
 .cursor { 
   width: 8px; 
   height: 8px; 
@@ -44,7 +70,7 @@ a { color: var(--text-main); text-decoration: none; cursor: none; }
   pointer-events: none; 
   z-index: 10000; 
   transform: translate(-50%, -50%); 
-  transition: width 0.3s, height 0.3s, background 0.3s; 
+  transition: width 0.3s, height 0.3s; 
   mix-blend-mode: difference; /* කළු පසුබිමකදී සුදු, සුදු පසුබිමකදී කළු වේ */
 }
 
@@ -62,53 +88,205 @@ a { color: var(--text-main); text-decoration: none; cursor: none; }
   mix-blend-mode: difference; 
 }
 
+/* ලින්ක් එකක් උඩදී ලොකු වන කර්සරය */
 .cursor.active { 
   width: 50px; 
   height: 50px; 
   background: #ffffff; 
+}
+
+/* Navigation */
+nav { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 40px 60px; 
+  position: fixed; 
+  width: 100%; 
+  z-index: 100; 
   mix-blend-mode: difference; 
 }
 
-nav { display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; position: fixed; width: 100%; z-index: 100; mix-blend-mode: difference; }
-.logo { font-size: 1.2rem; font-weight: 600; font-family: 'Inter', sans-serif; letter-spacing: -0.5px; color: white; }
+/* Logo එක හැමවිටම සුදු පැහැයෙන් තැබීම (difference නිසා auto මාරු වේ) */
+.logo { 
+  font-size: 1.2rem; 
+  font-weight: 600; 
+  font-family: 'Inter', sans-serif; 
+  letter-spacing: -0.5px; 
+  color: #ffffff; 
+}
 
-.container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+.container { 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 0 60px; 
+}
 
-/* Hero */
-.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
-.hero-content { text-align: center; }
-.hero h1 { font-size: 8rem; line-height: 1.1; overflow: hidden; }
-.hero h1.italic { font-style: italic; color: var(--text-muted); }
-.hero p { margin-top: 30px; font-size: 1.2rem; color: var(--text-muted); font-family: 'Inter', sans-serif; font-weight: 400; }
-.scroll-indicator { position: absolute; bottom: 50px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+/* Hero Section */
+.hero { 
+  height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  position: relative; 
+}
+.hero-content { 
+  text-align: center; 
+}
+.hero h1 { 
+  font-size: 8rem; 
+  line-height: 1.1; 
+  overflow: hidden; 
+}
+.hero h1.italic { 
+  font-style: italic; 
+  color: var(--text-muted); 
+}
+.hero p { 
+  margin-top: 30px; 
+  font-size: 1.2rem; 
+  color: var(--text-muted); 
+  font-family: 'Inter', sans-serif; 
+  font-weight: 400; 
+}
+.scroll-indicator { 
+  position: absolute; 
+  bottom: 50px; 
+  font-size: 0.8rem; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
+}
 
-/* About */
-.about { padding: 150px 0; }
-.about-flex { display: flex; justify-content: space-between; align-items: center; gap: 80px; }
-.about-text { flex: 1; }
-.about-text h2 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 40px; }
-.about-text p { font-size: 1.2rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 40px; max-width: 500px; }
-.link-btn { display: inline-block; padding-bottom: 5px; border-bottom: 1px solid var(--text-main); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; transition: 0.3s; }
-.link-btn:hover { color: var(--text-muted); border-color: var(--text-muted); }
-.about-image { flex: 1; height: 500px; width: 100%; background-size: cover; background-position: center; border-radius: 4px; overflow: hidden; }
+/* About Section */
+.about { 
+  padding: 150px 0; 
+}
+.about-flex { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 80px; 
+}
+.about-text { 
+  flex: 1; 
+}
+.about-text h2 { 
+  font-size: 3.5rem; 
+  line-height: 1.2; 
+  margin-bottom: 40px; 
+}
+.about-text p { 
+  font-size: 1.2rem; 
+  line-height: 1.8; 
+  color: var(--text-muted); 
+  margin-bottom: 40px; 
+  max-width: 500px; 
+}
+.link-btn { 
+  display: inline-block; 
+  padding-bottom: 5px; 
+  border-bottom: 1px solid var(--text-main); 
+  text-transform: uppercase; 
+  font-size: 0.9rem; 
+  letter-spacing: 1px; 
+  transition: 0.3s; 
+}
+.link-btn:hover { 
+  color: var(--text-muted); 
+  border-color: var(--text-muted); 
+}
+.about-image { 
+  flex: 1; 
+  height: 500px; 
+  width: 100%; 
+  background-size: cover; 
+  background-position: center; 
+  border-radius: 4px; 
+  overflow: hidden; 
+}
 
 /* Skills Grid */
-.projects { padding: 100px 0 200px; }
-.section-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; font-family: 'Inter', sans-serif; margin-bottom: 80px; border-bottom: 1px solid var(--text-muted); padding-bottom: 20px; }
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-.skill-card { background: var(--card-bg); padding: 40px; border-radius: 8px; font-size: 1.5rem; font-family: 'Playfair Display', serif; text-align: center; transition: 0.3s; }
-.skill-card:hover { transform: translateY(-10px); background: var(--text-main); color: var(--bg-color); }
+.projects { 
+  padding: 100px 0 200px; 
+}
+.section-title { 
+  font-size: 1rem; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
+  font-family: 'Inter', sans-serif; 
+  margin-bottom: 80px; 
+  border-bottom: 1px solid var(--text-muted); 
+  padding-bottom: 20px; 
+}
+.skills-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 30px; 
+}
+.skill-card { 
+  background: var(--card-bg); 
+  padding: 40px; 
+  border-radius: 8px; 
+  font-size: 1.5rem; 
+  font-family: 'Playfair Display', serif; 
+  text-align: center; 
+  transition: 0.3s; 
+}
+.skill-card:hover { 
+  transform: translateY(-10px); 
+  background: var(--text-main); 
+  color: var(--bg-color); 
+}
 
-/* Footer */
-footer { padding: 150px 0 50px; border-top: 1px solid var(--accent); }
-footer h2 { font-size: 5.5rem; max-width: 900px; line-height: 1.1; }
-.email-link { font-size: 2.5rem; color: var(--text-main); border-bottom: 1px solid var(--text-main); padding-bottom: 10px; width: fit-content; transition: 0.3s; display: block; margin-top: 30px; }
-.email-link:hover { opacity: 0.7; }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 80px; border-top: 1px solid var(--accent); margin-top: 50px; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;}
-.socials { display: flex; gap: 40px; }
-.socials a { color: var(--text-muted); transition: 0.3s; }
-.socials a:hover { color: var(--text-main); }
+/* Footer Section */
+footer { 
+  padding: 150px 0 50px; 
+  border-top: 1px solid var(--accent); 
+}
+footer h2 { 
+  font-size: 5.5rem; 
+  max-width: 900px; 
+  line-height: 1.1; 
+}
+.email-link { 
+  font-size: 2.5rem; 
+  color: var(--text-main); 
+  border-bottom: 1px solid var(--text-main); 
+  padding-bottom: 10px; 
+  width: fit-content; 
+  transition: 0.3s; 
+  display: block; 
+  margin-top: 30px; 
+}
+.email-link:hover { 
+  opacity: 0.7; 
+}
+.footer-bottom { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding-top: 80px; 
+  border-top: 1px solid var(--accent); 
+  margin-top: 50px; 
+  font-size: 0.9rem; 
+  color: var(--text-muted); 
+  text-transform: uppercase; 
+  letter-spacing: 1px;
+}
+.socials { 
+  display: flex; 
+  gap: 40px; 
+}
+.socials a { 
+  color: var(--text-muted); 
+  transition: 0.3s; 
+}
+.socials a:hover { 
+  color: var(--text-main); 
+}
 
+/* Responsive Media Query */
 @media (max-width: 768px) {
   .hero h1 { font-size: 4rem; }
   .about-flex { flex-direction: column; }

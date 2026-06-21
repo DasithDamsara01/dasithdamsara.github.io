@@ -1,45 +1,25 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
-const hoverImage = document.getElementById('hover-image');
-const nameTarget = document.querySelector('.name-hover-target');
-const imageOverlay = document.getElementById('image-overlay');
-
 // Custom Cursor (Only on Desktop)
 if(window.innerWidth > 768) {
+    const cursor = document.querySelector('.cursor');
+    const follower = document.querySelector('.cursor-follower');
     const links = document.querySelectorAll('a, .theme-btn');
 
     document.addEventListener('mousemove', (e) => {
         gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
         gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.3 });
-        // ფොტო එක Cursor එක පිටიპස්სෙන් එන්න සැලැස්වීම
-        gsap.to(hoverImage, { x: e.clientX, y: e.clientY, duration: 0.4 });
     });
 
     links.forEach(link => {
-        link.addEventListener('mouseenter', () => cursor.classList.add('active'));
-        link.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-    });
-
-    // නම උඩට යද්දී විතරක් පොඩි photo එක පෙන්වීම
-    nameTarget.addEventListener('mouseenter', () => {
-        hoverImage.classList.add('visible');
-    });
-    nameTarget.addEventListener('mouseleave', () => {
-        hoverImage.classList.remove('visible');
+        link.addEventListener('mouseenter', () => {
+            cursor.classList.add('active');
+        });
+        link.addEventListener('mouseleave', () => {
+            cursor.classList.remove('active');
+        });
     });
 }
-
-// Double Click කරාම Full Image එක පෙන්වීම
-nameTarget.addEventListener('dblclick', () => {
-    imageOverlay.classList.add('open');
-});
-
-// ඕනෑම තැනක click කරාම Full Image එක වැසීම
-imageOverlay.addEventListener('click', () => {
-    imageOverlay.classList.remove('open');
-});
 
 // Hero Animations
 gsap.from('.reveal-text', {
